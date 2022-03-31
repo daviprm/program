@@ -2,39 +2,11 @@
 
     <div class="word_container">
         <div class="f_word_row">
-            <input autocomplete="off" type="text" id="txt1" maxlength="1">
-            <input autocomplete="off" type="text" id="txt2" maxlength="1">
-            <input autocomplete="off" type="text" id="txt3" maxlength="1">
-            <input autocomplete="off" type="text" id="txt4" maxlength="1">
-            <input autocomplete="off" type="text" id="txt5" maxlength="1">
-        </div>
-        <div class="f_word_row">
-            <input autocomplete="off" type="text" id="txt1" maxlength="1">
-            <input autocomplete="off" type="text" id="txt2" maxlength="1">
-            <input autocomplete="off" type="text" id="txt3" maxlength="1">
-            <input autocomplete="off" type="text" id="txt4" maxlength="1">
-            <input autocomplete="off" type="text" id="txt5" maxlength="1">
-        </div>
-        <div class="f_word_row">
-            <input autocomplete="off" type="text" id="txt1" maxlength="1">
-            <input autocomplete="off" type="text" id="txt2" maxlength="1">
-            <input autocomplete="off" type="text" id="txt3" maxlength="1">
-            <input autocomplete="off" type="text" id="txt4" maxlength="1">
-            <input autocomplete="off" type="text" id="txt5" maxlength="1">
-        </div>
-        <div class="f_word_row">
-            <input autocomplete="off" type="text" id="txt1" maxlength="1">
-            <input autocomplete="off" type="text" id="txt2" maxlength="1">
-            <input autocomplete="off" type="text" id="txt3" maxlength="1">
-            <input autocomplete="off" type="text" id="txt4" maxlength="1">
-            <input autocomplete="off" type="text" id="txt5" maxlength="1">
-        </div>
-        <div class="f_word_row">
-            <input autocomplete="off" type="text" id="txt1" maxlength="1">
-            <input autocomplete="off" type="text" id="txt2" maxlength="1">
-            <input autocomplete="off" type="text" id="txt3" maxlength="1">
-            <input autocomplete="off" type="text" id="txt4" maxlength="1">
-            <input autocomplete="off" type="text" id="txt5" maxlength="1">
+            <input autocomplete="off" type="text" id="fr_f_input" maxlength="1" @keydown="onKeyUp">
+            <input autocomplete="off" type="text" id="fr_s_input" maxlength="1" @keydown="onKeyUp">
+            <input autocomplete="off" type="text" id="fr_t_input" maxlength="1" @keydown="onKeyUp">
+            <input autocomplete="off" type="text" id="fr_fo_input" maxlength="1" @keydown="onKeyUp">
+            <input autocomplete="off" type="text" id="fr_fi_input" maxlength="1" @keydown="onKeyUp">
         </div>
     </div>
 
@@ -45,12 +17,46 @@
     export default {
         data() {
             return {
+                word: {
+                    fr_f_input: '',
+                    fr_s_input: '',
+                    fr_t_input: '',
+                    fr_fo_input: '',
+                    fr_fi_input: '',
+                }
             }
         },
         mounted() {
         },
         methods: {
+            // verify input value == max length
+            onKeyUp(e) {
+                let input = e.target;
+                let maxLength = input.maxLength;
+                let value = input.value;
+                if (value.length == maxLength) {
+                    let nextInput = input.nextElementSibling;
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+                // if key is backspace
+                if (e.keyCode == 8) {
 
+                    if(e.target.value.length != 0) {
+                        e.target.value = '';
+                        e.target.focus();
+                        return;
+                    } else {
+                        let prevInput = input.previousElementSibling;
+                        if (prevInput) {
+                            prevInput.focus();
+                        }
+                    }
+
+ 
+                }
+            }
         }
     }
 

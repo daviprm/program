@@ -30,7 +30,7 @@
         </div>
       </header>
 
-      <wordContent />
+      <wordContent2 />
 
       <keyboard />
 
